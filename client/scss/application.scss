@@ -1,0 +1,46 @@
+@import 'colors';
+@import url('https://fonts.googleapis.com/css2?family=Karantina&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karantina&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@200&family=Jost&family=Karantina&display=swap');
+body {
+    background: rgb(237, 237, 233);
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr;
+  }
+
+.menu {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+button {
+  border-radius: 4px;
+  height:40px;
+  width:150px;
+  margin: 3px;
+  border:0.2pc solid $green;
+  font-family: Jost;
+  font-size: 15px;
+  background-color: $green;
+  color:white;
+ 
+}
+
+h3 {
+  margin: 30px;
+  text-align: center;
+}
+
+h2 {
+  margin: 70px;
+  text-align: center;
+  font-size: 30px;
+}
+
+h1 {
+  margin: 20px;
+  font-family: karantina;
+}
