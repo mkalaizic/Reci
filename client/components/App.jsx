@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Menu from './MenuCreator.jsx';
+import Display from './Display.jsx';
 
 class App extends Component {
     constructor(props) {
@@ -8,9 +8,8 @@ class App extends Component {
     render() {
         return (
                 <div>
-                    <h2>Your new recipe book, but smarter.</h2>
-                    <h3>What do you want to do today?</h3>
-                    <Menu />
+
+                    <Display />
 
                 </div>
             ); 

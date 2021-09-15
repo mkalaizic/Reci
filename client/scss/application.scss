@@ -43,4 +43,47 @@ h2 {
 h1 {
   margin: 20px;
   font-family: karantina;
+
+}
+
+h4 {
+  text-align: center;
+  font-size: 20px;
+
+}
+
+#recipesTable {
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  
+}
+
+#buttonRecipe {
+  border-radius: 4px;
+  height:40px;
+  width:150px;
+  margin: 3px;
+  border:0.2pc solid $grey;
+  font-family: Jost;
+  font-size: 15px;
+  background-color: $grey;
+  color:white;
+  
+}
+
+#home {
+  border-radius: 4px;
+  height:40px;
+  width:150px;
+  display:block;
+  margin-right: 0;
+  margin-left: auto;
+  border:0.2pc solid transparent;
+  font-family: Jost;
+  font-size: 15px;
+  background-color: transparent;
+  color:rgb(120, 114, 114);
+  text-align: rigth;
 }

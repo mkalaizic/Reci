@@ -5,12 +5,13 @@ const reciController = {};
 reciController.getRecipes = (req, res, next) => {
 
   const allRecipes = 
-  `SELECT my_recipes ingredient
-  FROM recipes`;
+  `SELECT recipe_name
+  FROM my_recipes`;
+  
   db.query(allRecipes)
     .then(res => {const {rows} = res; return rows;})
     .then(data => {
-      console.log(data);
+      //console.log(data);
       res.locals.recipes = data;
     })
     .then(() => next())

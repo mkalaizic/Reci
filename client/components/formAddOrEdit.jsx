@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
    addRecipes: () => dispatch(actions.addRecipeActionCreator()),
 });
 
-class Menu extends Component {
+class formAddOrEdit extends Component {
     constructor(props) {
       super(props);
     }
@@ -31,7 +31,7 @@ class Menu extends Component {
     return(
         <div id= "SearchTitle">
        
-          <h4>You currently have {this.props.totalRecipes} recipes!</h4>
+          <h4>Hola a todes!</h4>
         </div>
         );
     }
@@ -39,4 +39,4 @@ class Menu extends Component {
 
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Menu)
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(formAddOrEdit);
