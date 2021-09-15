@@ -1,5 +1,5 @@
 
-
+import Options from './IndexOptions.jsx';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as actions from './actions/actions.js';
@@ -17,10 +17,10 @@ const mapStateToProps = state => ({
     totalRecipes : state.recipes.totalRecipes,
 })
 
-//recipe_name,ingredient,quantity,comment
-const mapDispatchToProps = dispatch => ({
-   addRecipes: () => dispatch(actions.addRecipeActionCreator()),
-});
+// //recipe_name,ingredient,quantity,comment
+// const mapDispatchToProps = dispatch => ({
+//   addRecipes: () => dispatch(actions.addRecipeActionCreator()),
+// });
 
 class Menu extends Component {
     constructor(props) {
@@ -39,4 +39,4 @@ class Menu extends Component {
 
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Menu)
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, null)(Menu);

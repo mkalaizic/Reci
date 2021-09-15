@@ -13,13 +13,13 @@ import * as actions from './actions/actions.js';
 */
 
 
-const mapStateToProps = state => ({
-    totalRecipes : state.recipes.totalRecipes,
-})
+// const mapStateToProps = state => ({
+//     totalRecipes : state.recipes.totalRecipes,
+// })
 
 //recipe_name,ingredient,quantity,comment
 const mapDispatchToProps = dispatch => ({
-   addRecipes: () => dispatch(actions.addRecipeActionCreator()),
+   addRecipes: (name,ingr,quant,com) => dispatch(actions.addRecipeActionCreator(name,ingr,quant,com)),
 });
 
 class FormAddOrEdit extends Component {
@@ -29,9 +29,29 @@ class FormAddOrEdit extends Component {
 
   render() {
     return(
-        <div id= "SearchTitle">
-       
-          <h4>Hola a todes!</h4>
+        <div className="recipeForm">
+          
+           <label>Recipe name:</label>
+            <input id="name" type="text"></input>
+            <label>Ingredient:</label>
+            <input id="ingredient" type="text"></input>
+            <label>Quantity:</label>
+            <input id="quantity" type="text"></input>
+            <label>Comments:</label>
+            <input id="comment" type="text"></input>
+            
+            <button onClick = {() => {
+              const name = document.getElementById('name').value
+              const ingr = document.getElementById('ingredient').value
+              const quant = document.getElementById('quantity').value
+              const com = document.getElementById('comment').value
+              console.log(name,ingr,quant,com);
+              this.props.addRecipes(name,ingr,quant,com);
+              document.getElementById('ingredient').value = '';
+              document.getElementById('quantity').value = '';
+              document.getElementById('comment').value = '';
+              
+              }}>Save</button>
         </div>
         );
     }
@@ -39,4 +59,4 @@ class FormAddOrEdit extends Component {
 
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Menu)
-export default connect(mapStateToProps, mapDispatchToProps)(FormAddOrEdit);
+export default connect(null, mapDispatchToProps)(FormAddOrEdit);

@@ -12,58 +12,61 @@
  import * as types from '../components/constants/actionTypes.js';
 
 const initialState = {
-  totalRecipes: 2,
-//   recipesList: [
-//     {
-//         "recipe_id": 0,
-//         "recipe_name": "Pan",
-//         "ingredient": "Harina",
-//         "quantity": 1,
-//         "comment": "Hola"
-//     },
-//     {
-//         "recipe_id": 0,
-//         "recipe_name": "Pan",
-//         "ingredient": "Agua",
-//         "quantity": 12,
-//         "comment": "Hola2"
-//     }
-// ],
+  totalRecipes: 0,
+  recipesList: [
+    // {
+    //     "recipe_id": 0,
+    //     "recipe_name": "Pan",
+    //     "ingredient": "Harina",
+    //     "quantity": 1,
+    //     "comment": "Hola"
+    // },
+    // {
+    //     "recipe_id": 0,
+    //     "recipe_name": "Pan",
+    //     "ingredient": "Agua",
+    //     "quantity": 12,
+    //     "comment": "Hola2"
+    // }
+],
   lastRecipeId: 1,
 };
 
 const recipesReducer = (state = initialState, action) => {
-  //let recipesList;
+  let recipesList;
   let totalRecipes;
   let lastRecipeId;
+  let newRecipe;
 
   switch (action.type) {
     case types.ADD_RECIPE: {
 
-      //  // addMarket(lastMarketId, totalMarkets);
-      //   // create the new market object from provided data
-      // newRecipe = {
-      // //     // what goes in here?
-      //   recipeId: state.lastRecipeId,
-      //   recipe_name: action.payload.recipe_name,
-      //   ingredient: action.payload.ingredient,
-      //   quantity: action.payload.quantity,
-      //   comment: action.payload.comment,
+       // addMarket(lastMarketId, totalMarkets);
+        // create the new market object from provided data
+       newRecipe = {
+        // what goes in here?
+        recipeId: state.lastRecipeId,
+        recipe_name: action.payload,
+        // ingredient: action.payload.ingredient,
+        // quantity: action.payload.quantity,
+        // comment: action.payload.comment,
+       
         
-      // };
+      };
   
-      // increment lastMarketId and totalMarkets counters
+      // // increment lastMarketId and totalMarkets counters
+      // if(state.recipesList.recipe_name !== action.payload.recipe_name)
       lastRecipeId = state.lastRecipeId + 1;
       totalRecipes = state.totalRecipes + 1;
   
       // push the new market onto a copy of the market list
-     // recipesList = state.recipesList.slice();
-      //recipesList.push(newRecipe);
+      recipesList = state.recipesList.slice();
+      recipesList.push(newRecipe);
   
       // return updated state
       return {
         ...state,
-       // recipesList,
+        recipesList,
         lastRecipeId,
         totalRecipes,
       };
