@@ -2,6 +2,7 @@ import Options from './IndexOptions.jsx';
 import Ingredients from './Ingredients.jsx';
 import React, { Component } from 'react';
 import Menu from './MenuCreator.jsx';
+import FormAddOrEdit from './formAddOrEdit.jsx';
 
 let test;
 const recipes = [];
@@ -12,15 +13,16 @@ class Display extends Component {
     super(props);
     this.state= {};
     this.getFromServer = this.getFromServer.bind(this);
+    this.completeForm = this.completeForm.bind(this);
   }
   
   componentDidMount() {
-    this.state = {show:false}
+    this.state = {show:'home'}
   }
 
   getFromServer = ()=>{
 
-    this.setState({show:true})
+    this.setState({show:'search'})
     fetch('/recipes')
     .then(data => data.json())
     .then(data=> {
@@ -40,19 +42,30 @@ class Display extends Component {
     
 }
 
+completeForm = () => {
+  this.setState({show:'addOrEdit'})
+}
+
   render(){
-    if(this.state.show) return(
+    if(this.state.show==='search') return(
       
       <div>
-         <button id="home" onClick={() => this.setState({show:false})}>Main menu</button>
+         <button id="home" onClick={() => this.setState({show:'home'})}>Main menu</button>
         <Menu />
         {recipes}
        
       </div>
     ) 
+
+    else if(this.state.show === 'addOrEdit') return (
+      <div>
+        <button id="home" onClick={() => this.setState({show:'home'})}>Main menu</button>
+        <FormAddOrEdit />
+      </div>
+    )
     else return(
       <div>
-         <Options getFromServer = {this.getFromServer}/>
+         <Options getFromServer = {this.getFromServer} completeForm = {this.completeForm}/>
       </div>
       )};
     }

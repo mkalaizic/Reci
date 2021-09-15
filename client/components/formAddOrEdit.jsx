@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
    addRecipes: () => dispatch(actions.addRecipeActionCreator()),
 });
 
-class formAddOrEdit extends Component {
+class FormAddOrEdit extends Component {
     constructor(props) {
       super(props);
     }
@@ -39,4 +39,4 @@ class formAddOrEdit extends Component {
 
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Menu)
-export default connect(mapStateToProps, mapDispatchToProps)(formAddOrEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(FormAddOrEdit);

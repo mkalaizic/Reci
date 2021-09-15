@@ -18,7 +18,7 @@ const Options = props => (
   
           <div className="menu">
               <button onClick = {()=> props.getFromServer()} >Look up recipe</button>
-              <button>Add or edit recipes</button>
+              <button onClick = {()=> props.completeForm()}>Add or edit recipes</button>
               <button>Shopping list</button>
 
           </div>
