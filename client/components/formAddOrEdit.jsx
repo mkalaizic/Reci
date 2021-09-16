@@ -15,6 +15,7 @@ import * as actions from './actions/actions.js';
 
 const mapStateToProps = state => ({
     lastRecipeList : state.recipes.recipesList,
+    lastId: state.recipes.lastRecipeId,
 })
 
 //recipe_name,ingredient,quantity,comment
@@ -32,7 +33,7 @@ class FormAddOrEdit extends Component {
   render() {
     return(
         <div className="recipeForm">
-          
+        <div className="inputs">
            <label>Recipe name:</label>
             <input id="name" type="text"></input>
             <label>Ingredient:</label>
@@ -41,19 +42,45 @@ class FormAddOrEdit extends Component {
             <input id="quantity" type="text"></input>
             <label>Comments:</label>
             <input id="comment" type="text"></input>
-            
-            <button onClick = {() => {
+          
+            </div>
+            <button id= "saveRecipe" onClick = {() => {
+              //the first state gives me the old ID, so when the list is empty I add one to have the correct ID
+              let id;
+              if(this.props.lastRecipeList.length === 0){
+                this.props.addRecipesCounter();
+                id = this.props.lastId+1;
+              } 
+              else id = this.props.lastId;
+
               const recipe_name = document.getElementById('name').value;
-              if(this.props.lastRecipeList.length === 0) this.props.addRecipesCounter();
-              const ingr = document.getElementById('ingredient').value
-              const quant = document.getElementById('quantity').value
-              const com = document.getElementById('comment').value
-             
+              const ingr = document.getElementById('ingredient').value;
+              const quant = document.getElementById('quantity').value;
+              const com = document.getElementById('comment').value;
+              
               this.props.addRecipes(recipe_name,ingr,quant,com);
+
               document.getElementById('ingredient').value = '';
               document.getElementById('quantity').value = '';
               document.getElementById('comment').value = '';
               
+              const body= {
+                id,
+                recipe_name,
+                ingr,
+                quant,
+                com
+              }
+              //console.log(body);
+              fetch('/create',{
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'Application/JSON'
+                },
+                body: JSON.stringify(body)
+              })
+                .catch(err => console.log('CreateRecipe fetch: ERROR: ', err));
+          
               }}>Save</button>
         </div>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Ingredients = props => (
   <div id="recipesTable">
-    <button id= "buttonRecipe">Keylime</button>
+    <button id= "buttonRecipe">{props.recipeName}</button>
   </div>
 );
 

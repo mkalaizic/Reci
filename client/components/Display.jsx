@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import Menu from './MenuCreator.jsx';
 import FormAddOrEdit from './formAddOrEdit.jsx';
 
-let test;
-const recipes = [];
-const temp = [];
+// let test;
+// const recipes = [];
+// const temp = [];
 
 class Display extends Component {
   constructor(props) {
@@ -17,45 +17,54 @@ class Display extends Component {
   }
   
   componentDidMount() {
-    this.state = {show:'home'}
+    this.state = {
+                  show:'home',
+                  test:[],
+                  }
   }
 
   getFromServer = ()=>{
 
-    this.setState({show:'search'})
+    // this.setState({show:'search'})
+  
     fetch('/recipes')
-    .then(data => data.json())
+    .then(res => res.json())
     .then(data=> {
-     //console.log(data)})
-      data.forEach(el => {
-        if(!temp.includes(el.recipe_name)){
-          recipes.push(<Ingredients name={el.recipe_name}/>);
-          console.log(el.recipe_name);
-          temp.push(el.recipe_name);
-        }
-       
-      })})
-  //   })
-  //  // .then(data => (data[0].ingredient))
-  //  //como hago para sacar la informacion de aca?
+      this.setState({
+        test: data,
+        show: 'search'
+      })
+     })
+   // .then(data => (data[0].ingredient))
+   //como hago para sacar la informacion de aca?
     .catch(err => console.log('DetailsModal: fetch /api: ERROR: ', err));
     
 }
+
 
 completeForm = () => {
   this.setState({show:'addOrEdit'})
 }
 
   render(){
-    if(this.state.show==='search') return(
+    
+    if(this.state.show==='search') 
+    {
+      const recipes = this.state.test.map((el)=>(<Ingredients recipeName = {el} />))
       
+      return(
+
       <div>
+        
          <button id="home" onClick={() => this.setState({show:'home'})}>Main menu</button>
+         
         <Menu />
+        
         {recipes}
        
       </div>
-    ) 
+      ) 
+      }
 
     else if(this.state.show === 'addOrEdit') return (
       <div>
