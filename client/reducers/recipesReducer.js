@@ -11,6 +11,7 @@
 
  import * as types from '../components/constants/actionTypes.js';
 
+
 const initialState = {
   totalRecipes: 0,
   recipesList: [],

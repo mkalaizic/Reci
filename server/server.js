@@ -3,6 +3,9 @@ const app = express();
 const path = require('path');
 const reciController = require('./controllers/reci_controller');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // statically serve everything in the build folder on the route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
@@ -19,11 +22,13 @@ app.post('/create', reciController.createRecipe, (req,res)=>{
   res.status(200).json({});
 });
 
+app.get('/deleteRecipes', reciController.deleteRecipes,(req,res)=>{
+  res.status(200).json({});
+})
+
 app.get('/', reciController.getRecipes, (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../index.html'));
   });
-
-
 
 app.get('*', (req, res) => {
   return res.status(404).send('ERROR');

@@ -33,13 +33,13 @@ class FormAddOrEdit extends Component {
   render() {
     return(
         <div className="recipeForm">
-        <div className="inputs">
-           <label>Recipe name:</label>
-            <input id="name" type="text"></input>
-            <label>Ingredient:</label>
-            <input id="ingredient" type="text"></input>
-            <label>Quantity:</label>
-            <input id="quantity" type="text"></input>
+          <div className="inputs">
+           <label>Recipe name: (*)</label>
+            <input placeholder="Recipe name (i.e. bread)" id="name" type="text" required="required"></input>
+            <label>Ingredient: (*)</label>
+            <input placeholder="Ingredient (i.e. sugar)" id="ingredient" type="text" required="required"></input>
+            <label>Quantity: (*)</label>
+            <input placeholder="Quantity needed" id="quantity" type="number" required="required"></input>
             <label>Comments:</label>
             <input id="comment" type="text"></input>
           
@@ -71,7 +71,7 @@ class FormAddOrEdit extends Component {
                 quant,
                 com
               }
-              //console.log(body);
+              // console.log(body);
               fetch('/create',{
                 method: 'POST',
                 headers: {
@@ -80,6 +80,7 @@ class FormAddOrEdit extends Component {
                 body: JSON.stringify(body)
               })
                 .catch(err => console.log('CreateRecipe fetch: ERROR: ', err));
+
           
               }}>Save</button>
         </div>

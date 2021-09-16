@@ -23,6 +23,11 @@ class Display extends Component {
                   }
   }
 
+  // componentWillUnmount(){
+  //   alert('are you sure you want to leave?')
+  //   fetch('/deleteRecipes')
+  // }
+
   getFromServer = ()=>{
 
     // this.setState({show:'search'})

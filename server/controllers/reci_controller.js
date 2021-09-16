@@ -19,13 +19,24 @@ reciController.getRecipeAmount = (req, res,next) => {
     })
     .then(result => {
       console.log(result);
-      res.locals.recipes = result.length;
+      res.locals.recipeAmount = result.length;
     })
     .then(() => next())
     .catch(() => next({
-      log: 'ERROR in getting recipes',
-      message: {err: 'ERROR in reciController.getRecipes middleware'}
+      log: 'ERROR in getting recipes amount',
+      message: {err: 'ERROR in reciController.getRecipesAmount middleware'}
     }));
+};
+reciController.deleteRecipes = (req, res,next) => {
+  const deleteRecipes = 
+  `DELETE FROM my_recipes`;
+  
+  db.query(deleteRecipes)
+  .then(()=>next())
+  .catch(()=>next({
+    log: 'ERROR in deleting recipes',
+    message: {err: 'ERROR in reciController.deleteRecipes middleware'}
+  }))
 };
 
 reciController.getRecipes = (req, res,next) => {
@@ -55,16 +66,17 @@ reciController.getRecipes = (req, res,next) => {
 };
 
 reciController.createRecipe = (req,res,next) =>{
-  const {recipe_name} = req.query;
-  console.log(recipe_name);
+
+   const {id, recipe_name, ingr, quant, com} = req.body;
+  // console.log(id,recipe_name,ingr, quant, com)
   const newRecipe = 
   `INSERT INTO my_recipes (recipe_id, recipe_name, ingredient, quantity, comment) 
-  VALUES (2, $1, 'sugar', 200, 'hi');`;
+  VALUES ($1, $2, $3, $4, $5);`;
   
-  db.query(newRecipe,[recipe_name])
+  db.query(newRecipe,[id.toString(), recipe_name.toString(), ingr, quant.toString(), com.toString()])
   .then(() => next())
   .catch(() => next({
-    log: 'ERROR in addingrecipes',
+    log: 'ERROR in adding recipes',
     message: {err: 'ERROR in reciController.createRecipes middleware'}
   }));
 };
