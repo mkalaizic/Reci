@@ -13,23 +13,8 @@
 
 const initialState = {
   totalRecipes: 0,
-  recipesList: [
-    // {
-    //     "recipe_id": 0,
-    //     "recipe_name": "Pan",
-    //     "ingredient": "Harina",
-    //     "quantity": 1,
-    //     "comment": "Hola"
-    // },
-    // {
-    //     "recipe_id": 0,
-    //     "recipe_name": "Pan",
-    //     "ingredient": "Agua",
-    //     "quantity": 12,
-    //     "comment": "Hola2"
-    // }
-],
-  lastRecipeId: 1,
+  recipesList: [],
+  lastRecipeId: 0,
 };
 
 const recipesReducer = (state = initialState, action) => {
@@ -46,18 +31,13 @@ const recipesReducer = (state = initialState, action) => {
        newRecipe = {
         // what goes in here?
         recipeId: state.lastRecipeId,
-        recipe_name: action.payload,
-        // ingredient: action.payload.ingredient,
-        // quantity: action.payload.quantity,
-        // comment: action.payload.comment,
-       
+        recipe_name: action.payload.recipe_name,
+        ingredient: action.payload.ingredient,
+        quantity: action.payload.quantity,
+        comment: action.payload.comment,
         
       };
-  
-      // // increment lastMarketId and totalMarkets counters
-      // if(state.recipesList.recipe_name !== action.payload.recipe_name)
-      lastRecipeId = state.lastRecipeId + 1;
-      totalRecipes = state.totalRecipes + 1;
+
   
       // push the new market onto a copy of the market list
       recipesList = state.recipesList.slice();
@@ -67,10 +47,21 @@ const recipesReducer = (state = initialState, action) => {
       return {
         ...state,
         recipesList,
-        lastRecipeId,
-        totalRecipes,
       };
     }
+    case types.ADD_RECIPECOUNTER: {
+
+
+     lastRecipeId = state.lastRecipeId + 1;
+     totalRecipes = state.totalRecipes + 1;
+ 
+     // return updated state
+     return {
+       ...state,
+       lastRecipeId,
+       totalRecipes,
+     };
+   }
 
     // case types.UPDATE_RECIPE:{
 

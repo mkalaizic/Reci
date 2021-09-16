@@ -13,20 +13,22 @@ import * as actions from './actions/actions.js';
 */
 
 
-// const mapStateToProps = state => ({
-//     totalRecipes : state.recipes.totalRecipes,
-// })
+const mapStateToProps = state => ({
+    lastRecipeList : state.recipes.recipesList,
+})
 
 //recipe_name,ingredient,quantity,comment
 const mapDispatchToProps = dispatch => ({
    addRecipes: (name,ingr,quant,com) => dispatch(actions.addRecipeActionCreator(name,ingr,quant,com)),
+   addRecipesCounter: () => dispatch(actions.addRecipeToCounterActionCreator()),
 });
+
 
 class FormAddOrEdit extends Component {
     constructor(props) {
       super(props);
     }
-
+    
   render() {
     return(
         <div className="recipeForm">
@@ -41,12 +43,13 @@ class FormAddOrEdit extends Component {
             <input id="comment" type="text"></input>
             
             <button onClick = {() => {
-              const name = document.getElementById('name').value
+              const recipe_name = document.getElementById('name').value;
+              if(this.props.lastRecipeList.length === 0) this.props.addRecipesCounter();
               const ingr = document.getElementById('ingredient').value
               const quant = document.getElementById('quantity').value
               const com = document.getElementById('comment').value
-              console.log(name,ingr,quant,com);
-              this.props.addRecipes(name,ingr,quant,com);
+             
+              this.props.addRecipes(recipe_name,ingr,quant,com);
               document.getElementById('ingredient').value = '';
               document.getElementById('quantity').value = '';
               document.getElementById('comment').value = '';
@@ -59,4 +62,4 @@ class FormAddOrEdit extends Component {
 
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Menu)
-export default connect(null, mapDispatchToProps)(FormAddOrEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(FormAddOrEdit);

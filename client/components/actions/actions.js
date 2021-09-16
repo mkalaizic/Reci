@@ -15,13 +15,16 @@ import * as types from '../constants/actionTypes.js';
 export const addRecipeActionCreator = (recipe_name,ingredient,quantity,comment) => ({
   type: types.ADD_RECIPE,
   payload: {
-    recipe_name:recipe_name,
-    ingredient:ingredient,
-    quantity: quantity,
-    comment: comment,
+    recipe_name,
+    ingredient,
+    quantity,
+    comment,
   }
 });
-
+export const addRecipeToCounterActionCreator = () => ({
+  type: types.ADD_RECIPECOUNTER,
+  }
+);
   // add market
 export const updateRecipeActionCreator = () => ({
   type: types.UPDATE_RECIPE,
